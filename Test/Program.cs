@@ -42,7 +42,7 @@ namespace Test
                     Console.WriteLine("Press Ctrl + C to cancel!");
                     Console.CancelKeyPress += ((s, a) =>
                     {
-                        Console.WriteLine("Bye!");
+                        Console.WriteLine("Good Bye!");
                         _closingEvent.Set();
                     });
 
