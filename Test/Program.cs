@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading;
 using System.Xml;
 using RabbitMQ.Client;
+using System.Timers;
 using RabbitMQ.Client.Events;
 
 namespace Test
@@ -32,10 +33,11 @@ namespace Test
                     consumer.Received += (sender, args) =>
                     {
                         var msg = Encoding.UTF8.GetString(args.Body);
-                        Console.WriteLine(msg);
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(msg);
-                        Console.WriteLine(xmlDoc.OuterXml);
+                        Console.WriteLine("MSG: " + msg);
+                        //XmlDocument xmlDoc = new XmlDocument();
+
+                        //xmlDoc.LoadXml(msg);
+                        //Console.WriteLine(xmlDoc.OuterXml);
                     };
 
                     channel.BasicConsume("heartbeat-queue", true, consumer);
@@ -50,5 +52,15 @@ namespace Test
                 }
             }
         }
+
+        // Was een testje
+        //private static void checkHeartbeat(string sender)
+        //{
+        //    Console.WriteLine(sender);
+        //    if (sender == "crm")
+        //    {
+        //        Console.WriteLine("Heartbeat received from crm");
+        //    }
+        //}
     }
 }
